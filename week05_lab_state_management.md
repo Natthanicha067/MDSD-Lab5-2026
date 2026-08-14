@@ -240,10 +240,13 @@ class MyApp extends StatelessWidget {
 
 > ✅ **Checkpoint 1.1** รันแอปและกดปุ่ม "🤍 บันทึกเป็นรายการโปรด" ที่สินค้าชิ้นใดก็ได้ ทดสอบว่า (ก) ตัวเลขในไอคอนหัวใจที่ AppBar เพิ่มขึ้นถูกต้อง และ (ข) ปุ่มของสินค้าที่กดไปแล้วเปลี่ยนเป็น "❤️ บันทึกแล้ว" และกดซ้ำไม่ได้ ถ่ายภาพหน้าจอที่เห็นทั้งสองอย่างนี้พร้อมกัน แล้วเปิดไฟล์ `item_card.dart` และ `item_list_section.dart` ให้เห็น constructor ที่ต้องรับพารามิเตอร์ส่งต่อ (Prop Drilling) ชัดเจน แนบส่งในรายงาน
 
+<img width="672" height="802" alt="Screenshot 2569-08-14 at 11 34 49" src="https://github.com/user-attachments/assets/4d4a07a4-865d-420c-88c8-2d48e6fa30e1" />
+<img width="677" height="646" alt="Screenshot 2569-08-14 at 11 34 58" src="https://github.com/user-attachments/assets/8a4d7e09-6e8f-4961-8480-421214e28302" />
+
 **คำถาม**: ถ้าต้องเพิ่มหน้าจอ `FavoritesPage` ที่ต้องแสดงรายการที่บันทึกไว้ชุดเดียวกัน แต่ถูก push แยกออกไปเป็นอีก Route หนึ่ง จะเกิดปัญหาอะไรกับโค้ดแบบ Prop Drilling นี้ จงเขียนคำตอบสั้น ๆ 
 
 ```text
-
+จะไม่สามารถส่ง savedItems และ onSave ข้ามไปยัง FavoritesPage ที่เป็นอีก Route ได้โดยตรง ทำให้ต้องหาวิธีส่งข้อมูลเพิ่มเติมและโค้ดยุ่งยากขึ้น ซึ่งเป็นปัญหาของ Prop Drilling.
 ```
 
 ---
@@ -497,12 +500,16 @@ class HomePage extends StatelessWidget {
 ```
 
 > ✅ **Checkpoint 2.1** รันแอปใหม่ ทดสอบกดบันทึกสินค้าจากหลายจุด แล้วตรวจว่าตัวเลขที่ AppBar อัปเดตถูกต้องทุกครั้ง โดยที่ไฟล์ `item_list_section.dart` และ `item_card.dart` **ไม่มีพารามิเตอร์ savedItems หรือ onSave หลงเหลือใน constructor แล้ว**
-
+```text
+แอปสามารถบันทึกสินค้าจากหลายจุดได้ และตัวเลขรายการโปรดบน AppBar อัปเดตถูกต้องทุกครั้ง เมื่อเพิ่มหรือลบสินค้า โดย item_list_section.dart และ item_card.dart ไม่มีพารามิเตอร์ savedItems หรือ onSave ใน constructor แล้ว
+```
 > ✅ **Checkpoint 2.2** ทดสอบว่าเมื่อบันทึกสินค้าจากหน้า Home แล้วกดไปหน้า Favorites ตัวเลขและรายการสินค้าตรงกันทันที ลองกดปุ่มถังขยะลบสินค้าออกจากหน้า Favorites แล้วย้อนกลับไปหน้า Home ดูว่าปุ่มของสินค้านั้นกลับมากดซ้ำได้อีกครั้ง ถ่ายภาพหน้าจอทั้งสองหน้าเทียบกันแนบส่ง
 
-```image
+<img width="1199" height="954" alt="Screenshot 2569-08-14 at 11 48 15" src="https://github.com/user-attachments/assets/78dc2f41-e11f-4861-9b33-384e21c3e6e4" />
+<img width="1198" height="958" alt="Screenshot 2569-08-14 at 11 48 57" src="https://github.com/user-attachments/assets/b9eac1ff-1b0e-4358-92ad-40f502f14829" />
+<img width="1197" height="957" alt="Screenshot 2569-08-14 at 11 49 24" src="https://github.com/user-attachments/assets/2b8620a7-c97d-41ae-82a7-0580d9167783" />
+<img width="1194" height="955" alt="Screenshot 2569-08-14 at 11 49 36" src="https://github.com/user-attachments/assets/33d28149-5908-490e-b6ce-2b4aac860f66" />
 
-```
 
 ---
 
@@ -525,7 +532,12 @@ class HomePage extends StatelessWidget {
 บันทึกคำตอบที่ได้จาก Gemini 
 
 ```text
-
+1. Dark / Light Mode → Riverpod
+เพราะเป็น Global State ที่ต้องใช้ร่วมกันทั้งแอป
+2. ตัวนับถูกใจซิงค์ระหว่างหน้า → Riverpod
+เพราะเป็น Shared State ที่ต้องแชร์ข้อมูลระหว่างหลายหน้าจอ
+3. Animation กระพริบไอคอนหัวใจ → setState
+เพราะเป็น Local State ที่ใช้เฉพาะ Widget เดียว
 ```
 
 
@@ -536,11 +548,11 @@ class HomePage extends StatelessWidget {
 - Gemini แนะนำตรงกับกรอบการตัดสินใจในบทเรียนหรือไม่ มีจุดใดที่ต่างกัน
   
 ```text
-
+Gemini แนะนำสอดคล้องกับบทเรียนในเรื่องการพิจารณาขอบเขตของ State โดยเลือก setState สำหรับ Local State และเลือก State Management สำหรับ Global/Shared State แต่จุดที่ต่างคือ บทเรียนแนะนำให้ใช้ Provider ก่อนเมื่อ State ต้องแชร์หลายหน้าจอ และค่อยพิจารณา Riverpod เมื่อโปรเจกต์ต้องการ Type Safety หรือ Unit Test ที่เข้มงวดขึ้น ขณะที่ Gemini เลือก Riverpod โดยตรง
 ```
 - หากคำตอบของ Gemini ดูสมเหตุสมผลแต่ยังไม่ครบถ้วน (เช่น ไม่ได้พูดถึงขอบเขตของ Widget) ให้ลองถามคำถามต่อเพื่อขอเหตุผลเพิ่มเติม แล้วบันทึกบทสนทนาไว้ด้วย
 ```text
-
+เหตุใดขอบเขตของ State จึงมีผลต่อการเลือกใช้ setState, Provider หรือ Riverpod และเหตุใด Dark/Light Mode กับตัวนับถูกใจจึงควรใช้ State Management ที่แชร์ข้ามหลายหน้าจอ ในขณะที่ Animation ไอคอนหัวใจสามารถใช้ setState ได้
 
 ```
 
@@ -692,9 +704,19 @@ class HomePage extends ConsumerWidget {
 ```
 
 > ✅ **Checkpoint 4.1** รันแอปด้วย `flutter run` (หรือกด F5 ใน VS Code) แล้วทดสอบกดปุ่ม "บันทึก" ที่สินค้าชิ้นใดก็ได้ ตรวจว่าตัวเลข ❤️ ที่ AppBar เพิ่มขึ้นถูกต้อง ถ่ายภาพหน้าจอแนบส่ง
+<img width="1193" height="906" alt="Screenshot 2569-08-14 at 13 13 57" src="https://github.com/user-attachments/assets/2d2f3b56-11ae-4d55-90dd-8da927846e05" />
+<img width="1195" height="954" alt="Screenshot 2569-08-14 at 13 14 09" src="https://github.com/user-attachments/assets/339b0b4f-ef49-46b3-8cfc-0b4844735da6" />
 
 > ✅ **Checkpoint 4.2** เขียนตารางเปรียบเทียบสั้น ๆ ว่าตอนแปลงจาก Provider เป็น Riverpod ต้องเปลี่ยนอะไรบ้าง (เช่น `ChangeNotifier` → `StateNotifier`, `StatelessWidget` → `ConsumerWidget`, `context.watch` → `ref.watch`) อย่างน้อย 4 คู่เทียบ
-
+```text
+| Provider                 | Riverpod                              |
+| ------------------------ | ------------------------------------- |
+| `StatelessWidget`        | `ConsumerWidget`                      |
+| `context.watch<T>()`     | `ref.watch(provider)`                 |
+| `context.read<T>()`      | `ref.read(provider)`                  |
+| `ChangeNotifierProvider` | `ChangeNotifierProvider` ของ Riverpod |
+| `BuildContext`           | `WidgetRef`                           |
+```
 ---
 
 ## ส่วนที่ 5 (ทำด้วยตนเอง): ออกแบบฟีเจอร์เพิ่มด้วยตัวเอง
