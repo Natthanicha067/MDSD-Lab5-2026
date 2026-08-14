@@ -746,7 +746,18 @@ class HomePage extends ConsumerWidget {
 ทำโจทย์ที่ 1 และ 2 ซ้ำอีกครั้งในโปรเจกต์ทดลอง Riverpod (ส่วนที่ 4) เพื่อฝึกโยกความสามารถเดียวกันข้ามเครื่องมือ State Management สองแบบ
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอฟีเจอร์ค้นหาที่กรองสินค้าได้ถูกต้อง และภาพ Dialog ยืนยันการล้างรายการโปรด เขียนอธิบายเหตุผลการเลือกชนิด State ของทั้งสองฟีเจอร์
-```text
-
-
 ```
+โจทย์ที่1
+```
+<img width="1195" height="765" alt="Screenshot 2569-08-14 at 13 38 27" src="https://github.com/user-attachments/assets/232dbb0c-fe90-4e13-9ff2-c38eedee5784" />
+<img width="1195" height="613" alt="Screenshot 2569-08-14 at 13 40 59" src="https://github.com/user-attachments/assets/cf88f60e-1d1f-499f-bcbc-cbd01c395b42" />
+```
+โจทย์ที่2
+```
+<img width="1195" height="765" alt="Screenshot 2569-08-14 at 13 38 27" src="https://github.com/user-attachments/assets/f87aef7a-9530-4f3f-bd0e-d3a689451185" />
+<img width="1195" height="613" alt="Screenshot 2569-08-14 at 13 40 59" src="https://github.com/user-attachments/assets/1b38e3a0-8c27-4a86-bbda-9326ac42b1bf" />
+<img width="1199" height="938" alt="Screenshot 2569-08-14 at 13 44 58" src="https://github.com/user-attachments/assets/4a8715e4-9129-47bc-9ab2-00097c56812c" />
+<img width="1195" height="952" alt="Screenshot 2569-08-14 at 13 45 20" src="https://github.com/user-attachments/assets/78786676-8ad5-4e44-a36b-2f94a0d070b6" />
+<img width="1198" height="875" alt="Screenshot 2569-08-14 at 13 49 15" src="https://github.com/user-attachments/assets/f1e4e74e-2c3d-4a7f-8121-bec475d80842" />
+
+
